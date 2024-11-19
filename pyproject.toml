@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "python-new-project-setup"
+version = "0.1.0"
+description = "Demo setup of new Python project with standard devtools"
+authors = ["Robertas Petrauskas <robertas.petrauskas0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 88
+
+[tool.flake8]
+max-line-length = 88
+ignore = []
+exclude = ['.git', '__pycache__', 'build', 'dist']
+
+[tool.mypy]
+show_error_codes = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+flake8 = "^7.1.1"
+black = "^24.10.0"
+mypy = "^1.13.0"
+pre-commit = "^4.0.1"
+flake8-pyproject = "^1.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

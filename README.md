@@ -70,3 +70,43 @@ Another approach is to use tools like [poetry](https://python-poetry.org/docs/) 
 4. [pre-commit](https://pre-commit.com/) - framework for creating and running hooks before commits
 5. [isort](https://pycqa.github.io/isort/) - utility to sort and group import statements
    
+## Setting up this git repository from scratch
+
+To set up this repository I will be using [poetry](https://python-poetry.org/docs/). After installing poetry the following steps should be done.
+
+1. Run `poetry new python-new-project-setup` this creates the standard nested project structure, which includes the pyproject.toml file and README.md
+2. In pyproject.toml, set the supported Python versions
+3. Personaly I like creating and naming the python environment myself, so I am running `pyenv virtualenv 3.11.9 python-new-project-setup ` and `pyenv activate python-new-project-setup` to create and activate the virtual environment. Poetry is smart enough to detect this environment and use it istead of creating and environment itself.
+4. When working from an IDE like vscode or pycharm, now is a good time to make sure the correct interpreter is selected. When doing so you would point to the `python-new-project-setup` environment. Docs for [vscode](https://code.visualstudio.com/docs/python/environments#_manually-specify-an-interpreter) and [pycharm](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html#add-existing-interpreter)
+5. Install devtools into dev dependency group using poetry:
+   
+        poetry add isort --dev
+        poetry add flake8 --dev
+        poetry add Flake8-pyproject --dev
+        poetry add black --dev
+        poetry add mypy --dev
+        poetry add pre-commit --dev
+
+6.  Edit the pyproject.toml to include configurations of devtools:
+
+        [tool.mypy]
+        show_error_codes = true
+        warn_unused_ignores = true
+        disallow_untyped_defs = true
+        no_implicit_optional = true
+        check_untyped_defs = true
+        warn_return_any = true
+
+        [tool.isort]
+        profile = "black"
+
+        [tool.black]
+        line-length = 88
+
+        [tool.flake8]
+        max-line-length = 88
+        ignore = []
+        exclude = ['.git', '__pycache__', 'build', 'dist'] 
+
+7. Having configured our devtools, these configurations can then be used when using the devtools from the cli manualy, by our IDE's like PyCharm or VsCode, by pre-commit right before commiting our changes or by our CI/CD pipelines after pushing the code to the repository. All of this ensures that our code is of good quality, fits a single style and is in general, more maintainable.
+
