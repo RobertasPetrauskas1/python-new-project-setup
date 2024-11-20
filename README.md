@@ -106,7 +106,16 @@ To set up this repository I will be using [poetry](https://python-poetry.org/doc
         [tool.flake8]
         max-line-length = 88
         ignore = []
-        exclude = ['.git', '__pycache__', 'build', 'dist'] 
+        exclude = ['.git', '__pycache__', 'build', 'dist']
+
+
+    The `pyproject.toml` file can be considered as the (mostly) single configuration file for all of your python project and its tools. This file contains the configuration of our project, the tools used by our project, the dependencies and their version constrains used and supported by our project and other configurations. From this file another file is generated called the `poetry.lock` file. This file represents a snapshot of the environment, depicting concrete versions and hashes of the dependencies installed on the environment. When commited to the repository, all users will have the same dependency versions installed. If not commited, poetry will install the newest available versions based on the constraints of the `pyproject.toml` file
 
 7. Having configured our devtools, these configurations can then be used when using the devtools from the cli manualy, by our IDE's like PyCharm or VsCode, by pre-commit right before commiting our changes or by our CI/CD pipelines after pushing the code to the repository. All of this ensures that our code is of good quality, fits a single style and is in general, more maintainable.
+
+
+## Useful resources
+
+1. [RealPython](https://realpython.com/) - blog with nice indepth guides on many different python functions and topics
+2. [Hichhikers Guide to Python](https://docs.python-guide.org/writing/style/) - "Pythonic" Code Style. Short examples of best code style practices in Python. Also has alot of material about developing with Python in general.
 
